@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<tryton>
+  <data>
+
+    <record model="ir.ui.view" id="yubico_configuration_view_form">
+      <field name="model">yubico.configuration</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <![CDATA[
+          <form string="Yubico API Configuration">
+            <label name="client_id"/>
+            <field name="client_id"/>
+            <label name="signature"/>
+            <field name="signature"/>
+          </form>
+        ]]>
+      </field>
+    </record>
+
+    <record model="ir.action.act_window" id="act_yubico_configuration_form">
+      <field name="name">Yubico Configuration</field>
+      <field name="res_model">yubico.configuration</field>
+      <field name="view_type">form</field>
+    </record>
+
+    <record model="ir.action.act_window.view" id="act_sale_configuration_view1">
+      <field name="sequence" eval="1"/>
+      <field name="view" ref="yubico_configuration_view_form"/>
+      <field name="act_window" ref="act_yubico_configuration_form"/>
+    </record>
+    
+    <menuitem name="Yubico Configuration" parent="res.menu_res"
+        id="menu_configuration" action="act_yubico_configuration_form"
+        sequence="0" icon="tryton-preferences"/>
+
+    <record model="ir.model.access" id="access_group_admin">
+      <field name="model" search="[('model', '=', 'res.user.yubikey')]"/>
+      <field name="group" ref="res.group_admin"/>
+      <field name="perm_read" eval="True"/>
+      <field name="perm_write" eval="True"/>
+      <field name="perm_create" eval="True"/>
+      <field name="perm_delete" eval="True"/>
+    </record>
+
+    <record model="ir.model.access" id="access_group_admin_deny">
+      <field name="model" search="[('model', '=', 'res.user.yubikey')]"/>
+      <field name="perm_read" eval="True"/>
+      <field name="perm_write" eval="False"/>
+      <field name="perm_create" eval="False"/>
+      <field name="perm_delete" eval="False"/>
+    </record>
+
+  </data>
+</tryton>

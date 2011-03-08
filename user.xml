@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<tryton>
+  <data>
+
+   <record model="ir.ui.view" id="user_form_yubico">
+      <field name="model">res.user</field>
+      <field name="type">form</field>
+      <field name="inherit" ref="res.user_view_form"/>
+      <field name="arch" type="xml">
+        <![CDATA[
+          <data>
+            <xpath expr="/form/notebook/page[@id='preferences']" position="after">
+              <page string="Yubikeys" id="yubikeys">
+                <field name="yubikeys"/>
+              </page>
+            </xpath>
+          </data>
+        ]]>
+      </field>
+    </record> 
+
+    <record model="ir.ui.view" id="res_user_yubikey_form">
+      <field name="model">res.user.yubikey</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <![CDATA[
+          <form string="Yubikey">
+            <field name="user"/>
+            <field name="otp"/>
+          </form>
+        ]]>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="res_user_yubikey_tree">
+      <field name="model">res.user.yubikey</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <![CDATA[
+          <tree string="Yubikeys">
+            <field name="user"/>
+            <field name="otp"/>
+          </tree>
+        ]]>
+      </field>
+    </record>
+
+  </data>
+</tryton>
