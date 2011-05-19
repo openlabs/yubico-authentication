@@ -10,7 +10,7 @@ major_version, minor_version, _ = info.get('version', '0.0.1').split('.', 2)
 major_version = int(major_version)
 minor_version = int(minor_version)
 
-requires = []
+requires = ['yubicoclient']
 for dep in info.get('depends', []):
     if not re.match(r'(ir|res|workflow|webdav)(\W|$)', dep):
         requires.append('trytond_%s >= %s.%s, < %s.%s' %
@@ -19,7 +19,7 @@ for dep in info.get('depends', []):
 requires.append('trytond >= %s.%s, < %s.%s' %
         (major_version, minor_version, major_version, minor_version + 1))
 
-setup(name='trytond_yubico_auth',
+setup(name='trytond_yubico_authentication',
     version=info.get('version', '0.0.1'),
     description=info.get('description', ''),
     author=info.get('author', ''),
@@ -27,12 +27,12 @@ setup(name='trytond_yubico_auth',
     url=info.get('website', ''),
     download_url="http://downloads.tryton.org/" + \
             info.get('version', '0.0.1').rsplit('.', 1)[0] + '/',
-    package_dir={'trytond.modules.yubico_auth': '.'},
+    package_dir={'trytond.modules.yubico_authentication': '.'},
     packages=[
-        'trytond.modules.yubico_auth',
+        'trytond.modules.yubico_authentication',
     ],
     package_data={
-        'trytond.modules.yubico_auth': info.get('xml', [])
+        'trytond.modules.yubico_authentication': info.get('xml', [])
     },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -53,7 +53,7 @@ setup(name='trytond_yubico_auth',
     zip_safe=False,
     entry_points="""
     [trytond.modules]
-    yubico_auth = trytond.modules.yubico_auth
+    yubico_authentication = trytond.modules.yubico_authentication
     """,
 
 )

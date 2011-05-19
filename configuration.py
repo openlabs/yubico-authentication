@@ -1,9 +1,10 @@
 # This file is part of Tryton.  The COPYRIGHT file at the top level of
 # this repository contains the full copyright notices and license terms.
 '''
-    trytond_yubico_auth
+Yubico Yubikey based authentication - Configuration.
 
-Yubico Yubikey based authentication
+    Adds a singleton model where the client ID and signature key can be
+    stored for use with the API.
 
 :copyright: (c) 2010-2011 by Sharoon Thomas.
 :copyright: (c) 2010-2011 by Openlabs Technologies & Consulting (P) LTD
@@ -18,6 +19,6 @@ class Configuration(ModelSingleton, ModelSQL, ModelView):
     _description = __doc__
 
     client_id = fields.Char('Client ID', required=True)
-    signature = fields.Char('Signature')
+    signature = fields.Char('Signature(Key)', required=True)
 
 Configuration()
