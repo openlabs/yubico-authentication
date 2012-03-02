@@ -20,5 +20,8 @@ class Configuration(ModelSingleton, ModelSQL, ModelView):
 
     client_id = fields.Char('Client ID', required=True)
     signature = fields.Char('Signature(Key)', required=True)
+    single_factor = fields.Boolean('Single Factor',
+        help="Use OTP alone without password"
+    )
 
 Configuration()

@@ -59,16 +59,20 @@ class User(ModelSQL, ModelView):
             # based authentication
             return super(User, self).get_login(login, password)
 
-        if '|' not in password:
+        if not config.single_factor and '|' not in password:
             # If pipe is not there then it's not valid anyway
             return 0
 
-        password, otp = password.rsplit('|', 1)
+        if not config.single_factor:
+            password, otp = password.rsplit('|', 1)
 
-        # First of two factor authentication is password itself
-        user_id = super(User, self).get_login(login, password)
-        if user_id == 0:
-            return 0
+            # First of two factor authentication is password itself
+            user_id = super(User, self).get_login(login, password)
+            if user_id == 0:
+                return 0
+        else:
+            # In single factor the password is otp alone
+            otp = password
 
         # Second of two factor authentication using yubikey
         for key in user.yubikeys:

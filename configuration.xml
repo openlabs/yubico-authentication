@@ -12,6 +12,8 @@
             <field name="client_id"/>
             <label name="signature"/>
             <field name="signature"/>
+            <label name="single_factor"/>
+            <field name="single_factor"/>
           </form>
         ]]>
       </field>
